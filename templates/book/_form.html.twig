@@ -1,0 +1,39 @@
+{{ form_start(form) }}
+<div>{{ form_errors(form) }}</div>
+
+<div>
+    {{ form_label(form.title, 'Please enter the title') }}
+    {{ form_widget(form.title) }}
+    {{ form_errors(form.title) }}
+</div>
+
+<div>
+    {{ form_label(form.author, 'Please enter the author') }}
+    {{ form_widget(form.author) }}
+    {{ form_errors(form.author) }}
+</div>
+
+<div>
+    {{ form_label(form.description, 'Please enter the description') }}
+    {{ form_widget(form.description) }}
+    {{ form_errors(form.description) }}
+</div>
+
+<div>
+    {{ form_label(form.yearOfPublication, 'Please enter the year of publication') }}
+    {{ form_widget(form.yearOfPublication) }}
+    {{ form_errors(form.yearOfPublication) }}
+</div>
+
+<div>
+    {{ form_label(form.isbn, 'Please enter the ISBN') }}
+    {{ form_widget(form.isbn) }}
+    {{ form_errors(form.isbn) }}
+</div>
+
+<div>
+    <button type="submit">
+        Save!
+    </button>
+</div>
+{{ form_end(form) }}

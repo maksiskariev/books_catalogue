@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit book{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h2><a href="{{ path('app_book_detail', { id: book.id }) }}">Back to book details</a></h2>
+        <h1>Edit book</h1>
+
+        {{ include('book/_form.html.twig') }}
+    </div>
+{% endblock %}

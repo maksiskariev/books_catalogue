@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Books list{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; width: 95%; font: 18px/1.5 sans-serif; }
+    .search-btn { text-decoration: none; color: black; padding: 15px; background-color: white; border: 1px solid black }
+</style>
+
+<div class="example-wrapper">
+    <div style="display: flex; justify-content: space-between">
+        <h1>Books list</h1>
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}">Logout</a>
+        {% endif %}
+    </div>
+    
+    <form method="GET" action="{{ path('app_book_search') }}">
+        <label for="search">Search by title and author</label>
+        <input type="search" id="search" name="search">
+        <button type="submit" class="search-btn">Search</button>
+    </form>
+    
+    <a href="{{ path('app_book_add') }}">Add new book</a>
+
+    <ul>
+        {% for book in books %}
+            <li><a href="{{ path('app_book_detail', { id: book.id }) }}">{{ book.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

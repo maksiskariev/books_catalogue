@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Change book cover{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+    </style>
+
+    <div class="example-wrapper">
+        <h2><a href="{{ path('app_book_detail', { id: book.id }) }}">Back to book details</a></h2>
+
+        <div>
+            <div>
+                {{ form_start(form) }}
+                {{ form_widget(form.coverImage) }}
+                {{ form_errors(form.coverImage) }}
+
+                <div style="margin-top: 10px">
+                    <button type="submit">Save Changes</button>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

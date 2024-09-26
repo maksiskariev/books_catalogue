@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book {{ book.title }}{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h2><a href="{{ path('app_book_list') }}">Back to book list</a></h2>
+        <h1>{{ book.title }}</h1>
+
+        {% if book.coverImage %}
+            <img src="{{ books ~ book.coverImage }}" width="600px"/>
+        {% endif %}
+
+        <a href="{{ path('app_book_cover_image', { id: book.id }) }}">Edit book cover image</a>
+        <a href="{{ path('app_book_edit', { id: book.id }) }}">Edit</a>
+        <a href="{{ path('app_book_delete', {id: book.id}) }}">Delete</a>
+
+        <div>
+            <img src="" alt="">
+        </div>
+
+        <ul>
+            <li><b>Author</b> {{ book.author }}</li>
+            <li><b>Description</b> {{ book.description }}</li>
+            <li><b>Year of publication</b> {{ book.yearOfPublication|date("Y") }}</li>
+            <li><b>ISBN</b> {{ book.isbn }}</li>
+        </ul>
+    </div>
+{% endblock %}

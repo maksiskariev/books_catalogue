@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search results for {{ searchText }}{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; width: 95%; font: 18px/1.5 sans-serif; }
+    </style>
+
+    <div class="example-wrapper">
+        <h2><a href="{{ path('app_book_list') }}">Back to all books</a></h2>
+        <h1>Search results for: {{ searchText }}</h1>
+
+        <ul>
+            {% for book in books %}
+                <li><a href="{{ path('app_book_detail', { id: book.id }) }}">{{ book.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

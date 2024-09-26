@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Login</h1>
+
+    <form action="{{ path('app_login') }}" method="POST">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="_username" value="{{ lastUsername }}">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="_password" value="{{ lastUsername }}">
+        </div>
+
+        <input type="hidden" name="_target_path" value="/">
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
