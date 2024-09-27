@@ -24,10 +24,17 @@
     
     <a href="{{ path('app_book_add') }}">Add new book</a>
 
-    <ul>
-        {% for book in books %}
-            <li><a href="{{ path('app_book_detail', { id: book.id }) }}">{{ book.title }}</a></li>
-        {% endfor %}
-    </ul>
+    {% if books %}
+        <ul>
+            {% for book in books %}
+                <li><a href="{{ path('app_book_detail', { id: book.id }) }}">{{ book.title }}</a></li>
+            {% endfor %}
+
+            {{ knp_pagination_render(books) }}
+        </ul>
+        {% else %}
+        <h1>No books yet</h1>
+    {% endif %}
+
 </div>
 {% endblock %}

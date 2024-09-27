@@ -17,11 +17,15 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class BookController extends AbstractController
 {
-    #[Route('/', name: 'app_book_list')]
+    #[Route('/books/{page}', name: 'app_book_list', requirements: ['page' => '\d+'])]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function index(BookRepository $bookRepository): Response
+    public function index(BookRepository $bookRepository, int $page = 1): Response
     {
-        $books = $bookRepository->findAll();
+        $books = $bookRepository->findAllPaginated($page);
+
+        if (!$books->getItems()) {
+            $books = null;
+        }
 
         return $this->render('book/index.html.twig', [
             'books' => $books,
@@ -94,12 +98,16 @@ class BookController extends AbstractController
         return $this->redirectToRoute('app_book_list');
     }
 
-    #[Route('/search', name: 'app_book_search')]
+    #[Route('/search/{page}', name: 'app_book_search', requirements: ['page' => '\d+'])]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function search(Request $request, BookRepository $bookRepository): Response
+    public function search(Request $request, BookRepository $bookRepository, int $page = 1): Response
     {
         $searchText = $request->query->get('search');
-        $books = $bookRepository->findAlldByTitleAndAuthor($searchText);
+        $books = $bookRepository->findAlldByTitleAndAuthor($searchText, $page);
+
+        if (!$books->getItems()) {
+            $books = null;
+        }
 
         return $this->render('book/search.html.twig', [
             'books' => $books,
